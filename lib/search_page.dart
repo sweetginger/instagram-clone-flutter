@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/create_page.dart';
 
 /**
  * Search 탭에 표현할 화면 구현
@@ -16,7 +17,11 @@ class _SearchPageState extends State<SearchPage> {
       body: _buildBody(),
       // 플로팅버튼으로 등록버튼을 만듬
       floatingActionButton: FloatingActionButton(
-        onPressed: null,
+        // 플로팅버튼을 눌렀을때 push애니메이션을 주면서 CreatePage()로 화면전환
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CreatePage()));
+        },
         child: Icon(Icons.create),
         backgroundColor: Colors.blue,
       ),
