@@ -74,3 +74,12 @@ image picker 라이브러리 사용시 에러가 발생할 경우 /android/app/b
 이 프로젝트에서는 외부 로그인버튼 라이브러리를 사용한다.
 
 pubspec.yaml 파일 내 dependencies에 flutter_signin_button
+
+## 4. Firebase를 사용하기
+
+Google Login 기능을 구현하기 위해 Firebase를 사용한다.
+https://console.firebase.google.com/
+
+위 링크에서 프로젝트를 생성한다.
+
+패키지 경로는 /android/app/src/main/AndroidManifest.xml 안의 package에서 확인할 수 있다.
