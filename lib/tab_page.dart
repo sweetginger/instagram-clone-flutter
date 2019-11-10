@@ -22,7 +22,20 @@ class _TabPageState extends State<TabPage> {
   int _selectedIndex = 0;
 
   // 탭 별 페이지들을 각 클래스로 분리함
-  List _pages = [HomePage(), SearchPage(), AccountPage()];
+  List _pages;
+
+  // 해당 클래스가 생성되는 시점. (Flutter Lifecycle)
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // 클래스 내 변수에 접근할때는 widget.변수
+    _pages = [
+      HomePage(widget.user),
+      SearchPage(widget.user),
+      AccountPage(widget.user)
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
