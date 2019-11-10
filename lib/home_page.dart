@@ -1,9 +1,14 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 /**
  * Home 탭에 표현할 화면 구현
  */
 class HomePage extends StatelessWidget {
+  // TabPage 클래스에서 받은 user값을 HomePage 클래스 생성자 set 방식으로 넣어줌
+  final FirebaseUser user;
+  HomePage(this.user);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,15 +63,16 @@ class HomePage extends StatelessWidget {
                                   height: 80.0,
                                   child: CircleAvatar(
                                     // NetworkImage를 쓰면 웹 이미지 주소를 불러올 수 있음. Image.network('src')와 같다.
-                                    backgroundImage: NetworkImage(
-                                        'https://avatars0.githubusercontent.com/u/11537514?s=460&v=4'),
+                                    // user.photoUrl은 FirebaseUser의 로그인인증 후 받아오는 유저이미지주소
+                                    backgroundImage:
+                                        NetworkImage(user.photoUrl),
                                   )),
                               Padding(padding: EdgeInsets.all(8.0)),
-                              Text('hyr2902@gmail.com',
+                              Text(user.email,
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold)),
                               Padding(padding: EdgeInsets.all(4.0)),
-                              Text('황유림'),
+                              Text(user.displayName),
                               Padding(padding: EdgeInsets.all(8.0)),
                               // Row는 배열방식으로 사용
                               Row(

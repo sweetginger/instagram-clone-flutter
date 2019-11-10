@@ -1,14 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
 
 /**
  * Account 탭에 표현할 화면 구현
  */
 class AccountPage extends StatefulWidget {
+  final FirebaseUser user;
+  AccountPage(this.user);
+
   @override
   _AccountPageState createState() => _AccountPageState();
 }
 
 class _AccountPageState extends State<AccountPage> {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,9 +28,13 @@ class _AccountPageState extends State<AccountPage> {
   // Widget을 리턴하는 메소드
   Widget _buildAppBar() {
     return AppBar(actions: <Widget>[
+      // 로그아웃 처리
       IconButton(
         icon: Icon(Icons.exit_to_app),
-        onPressed: () {},
+        onPressed: () {
+          FirebaseAuth.instance.signOut();
+          _googleSignIn.signOut();
+        },
       )
     ]);
   }
@@ -52,8 +63,7 @@ class _AccountPageState extends State<AccountPage> {
                         height: 80.0,
                         // CircleAvatar : 원형 아바타
                         child: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              'https://avatars0.githubusercontent.com/u/11537514?s=460&v=4'),
+                          backgroundImage: NetworkImage(widget.user.photoUrl),
                         )),
                     // 아바타 위에 올릴 add버튼 위치를 bottomRight에 두기 위해 Container를 아바타와 같은 크기로 만듬
                     Container(
@@ -91,7 +101,7 @@ class _AccountPageState extends State<AccountPage> {
                 Padding(
                   padding: EdgeInsets.all(6.0),
                 ),
-                Text('Yurim Hwang',
+                Text(widget.user.displayName,
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0))
               ],

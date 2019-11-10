@@ -83,3 +83,7 @@ https://console.firebase.google.com/
 위 링크에서 프로젝트를 생성한다.
 
 패키지 경로는 /android/app/src/main/AndroidManifest.xml 안의 package에서 확인할 수 있다.
+
+## Flutter Lifecycle
+
+https://medium.com/flutter-community/flutter-lifecycle-for-android-and-ios-developers-8f532307e0c7

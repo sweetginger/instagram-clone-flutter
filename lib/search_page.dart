@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/create_page.dart';
 
@@ -5,6 +6,9 @@ import 'package:instagram_clone/create_page.dart';
  * Search 탭에 표현할 화면 구현
  */
 class SearchPage extends StatefulWidget {
+  final FirebaseUser user;
+  SearchPage(this.user);
+
   @override
   _SearchPageState createState() => _SearchPageState();
 }
@@ -13,6 +17,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       // body를 별도 메소드로 분리함
       body: _buildBody(),
       // 플로팅버튼으로 등록버튼을 만듬
